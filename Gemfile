@@ -45,9 +45,10 @@ end
 # gem 'debugger', group: [:development, :test]
 
 # For user authentication
- gem 'devise'
+gem 'devise'
 
- gem 'rspec-rails', :group=> [:test, :development]
+
+gem 'rspec-rails', :group=> [:test, :development]
 group :test do
 	gem 'capybara'
 	gem 'factory_girl_rails'
