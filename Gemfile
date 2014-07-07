@@ -44,15 +44,28 @@ end
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+#require 'active_support'
+
 # For user authentication
 gem 'devise'
 
-
-gem 'rspec-rails', :group=> [:test, :development]
-group :test do
-	gem 'capybara'
+group :test, :development do
+	gem 'rspec'
+	gem 'rspec-rails'
+	gem 'rb-readline'
+	gem 'factory_girl'
 	gem 'factory_girl_rails'
+#	gem 'shoulda-matchers'
+	gem 'simplecov-rcov'
+	gem 'database_cleaner'
+end
+
+group :test do
+	gem 'faker'
+	gem 'capybara'
+	gem 'guard'
  	gem 'guard-rspec'
- 	gem 'autotest'
- 	gem 'autotest-standalone'
+ 	gem 'launchy'
+# 	gem 'autotest'
+# 	gem 'autotest-standalone'
 end
