@@ -46,3 +46,12 @@ end
 
 # For user authentication
  gem 'devise'
+
+ gem 'rspec-rails', :group=> [:test, :development]
+group :test do
+	gem 'capybara'
+	gem 'factory_girl_rails'
+ 	gem 'guard-rspec'
+ 	gem 'autotest'
+ 	gem 'autotest-standalone'
+end
