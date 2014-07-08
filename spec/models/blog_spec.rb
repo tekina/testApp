@@ -13,5 +13,4 @@ describe Blog do
 	it "is invalid without summary" do
 		FactoryGirl.build(:blog, summary: nil).should_not be_valid
 	end
-
 end

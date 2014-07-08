@@ -1,10 +1,13 @@
 require 'rails_helper'
 
-RSpec.describe "LoginTests", :type => :request do
-  describe "GET /login_tests" do
-    it "works! (now write some real specs)" do
-      get new_user_session_path
-      expect(response.status).to be(200)
-    end
-  end
+RSpec.describe "LoginTests" do
+	it "creates a new user" do
+		user = FactoryGirl.create(:user)
+		visit new_user_session_path
+		click_link "Sign up"
+		fill_in "Email", :with => user.email
+		fill_in "Password", :with => user.password
+		fill_in "confirm", :with => user.password
+		click_button "Sign up"
+	end
 end
