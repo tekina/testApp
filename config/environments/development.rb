@@ -28,5 +28,6 @@ RLogin::Application.configure do
   config.assets.debug = true
 
   # Setting ActionMailer's default URL to localhost.
- # config.action_mailer.default_url_options = { :host => 'localhost:3000/blogs' }
+  config.action_mailer.default_url_options = { :host => 'localhost:3000/blogs' }
+  config.action_mailer.delivery_method = :smtp
 end
