@@ -1,4 +1,14 @@
-Factory.define :user do |f|
-	f.sequence(:email) {|n| "foo#{n}@example.com"}
-	f.password "secret"
+require 'faker'
+
+FactoryGirl.define do
+	factory :user do
+		email Faker::Internet.email
+		password "secret123"
+	end
+
+	factory :blog do
+		user_id Faker::Number.digit
+		post Faker::Lorem.paragraph
+		summary Faker::Lorem.sentence
+	end
 end
