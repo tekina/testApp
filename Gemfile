@@ -69,3 +69,5 @@ group :test do
 # 	gem 'autotest'
 # 	gem 'autotest-standalone'
 end
+
+gem 'coveralls', require: false
