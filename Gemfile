@@ -70,4 +70,9 @@ group :test do
 # 	gem 'autotest-standalone'
 end
 
+# for coveralls badge
 gem 'coveralls', require: false
+
+gem 'therubyracer'
+gem 'less-rails'
+gem 'twitter-bootstrap-rails', '~> 2.2.8'
