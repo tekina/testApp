@@ -5,6 +5,7 @@ gem 'rails', '4.0.0'
 
 # Using postgreSQL as production DB for delpoyment on Heroku
 group :production do
+	gem 'rails_12factor'
   gem 'pg'
 end
 
