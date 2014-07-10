@@ -79,7 +79,10 @@ end
 
 # for coveralls badge
 gem 'coveralls', require: false
-
+ 
+# for bootstrap
 gem 'therubyracer'
 gem 'less-rails'
 gem 'twitter-bootstrap-rails', '~> 2.2.8'
+
+ruby "2.0.0"

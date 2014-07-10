@@ -1,5 +1,6 @@
 class BlogsController < ApplicationController
-  before_action :set_blog, only: [:show, :edit, :update, :destroy]
+  # before_filter :authenticate_user!
+  before_action :set_blog, only: [:show] #, :edit, :update, :destroy]
 
   # GET /blogs
   # GET /blogs.json
@@ -26,7 +27,7 @@ class BlogsController < ApplicationController
   # POST /blogs
   # POST /blogs.json
   def create
-    @blog = Blog.new(blog_params)
+    @blog = Blog.new(blog_params.merge(user_id: current_user.try(:id)))
 
     respond_to do |format|
       if @blog.save
@@ -71,6 +72,6 @@ class BlogsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def blog_params
-      params.require(:blog).permit(:user_id, :post, :summary)
+      params.require(:blog).permit(:post, :summary)
     end
 end

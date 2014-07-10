@@ -1,5 +1,6 @@
 class Blog < ActiveRecord::Base
 	belongs_to :user
+	validates :user, presence: true
 	validates :user_id, presence: {message: "Field User cannot be blank."}
 	validates :post, presence: {message: "Post cannot be blank"}
 	validates :summary, presence: {message: "Summary cannot be blank"}

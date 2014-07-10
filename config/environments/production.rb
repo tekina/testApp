@@ -2,7 +2,7 @@ RLogin::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
-  config.cache_classes = true
+  config.cache_classes = true     # modified for heroku
 
   # Eager load code on boot. This eager loads most of Rails and
   # your application in memory, allowing both thread web servers
@@ -20,14 +20,14 @@ RLogin::Application.configure do
   # config.action_dispatch.rack_cache = true
 
   # Disable Rails's static asset server (Apache or nginx will already do this).
-  config.serve_static_assets = true
+  config.serve_static_assets = true       #modified for heroku
 
   # Compress JavaScripts and CSS.
   config.assets.js_compressor = :uglifier
   # config.assets.css_compressor = :sass
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
-  config.assets.compile = true
+  config.assets.compile = true  #modified for heroku
 
   # Generate digests for assets URLs.
   config.assets.digest = true
