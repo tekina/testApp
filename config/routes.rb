@@ -1,4 +1,6 @@
 RLogin::Application.routes.draw do
+  resources :comments
+
   resources :blogs
 
   devise_for :users

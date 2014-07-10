@@ -1,5 +1,12 @@
 require 'test_helper'
 
+include Devise::TestHelpers                          
+include Warden::Test::Helpers                        
+Warden.test_mode!                                    
+
+user = FactoryGirl.create(:user)
+login_as(user, :scope => :user)
+
 class BlogsControllerTest < ActionController::TestCase
   setup do
     @blog = blogs(:one)
@@ -18,7 +25,7 @@ class BlogsControllerTest < ActionController::TestCase
 
   test "should create blog" do
     assert_difference('Blog.count') do
-      post :create, blog: { post: @blog.post, summary: @blog.summary, user_id: @blog.user_id }
+      post :create, blog: { post: @blog.post, summary: @blog.summary }
     end
 
     assert_redirected_to blog_path(assigns(:blog))

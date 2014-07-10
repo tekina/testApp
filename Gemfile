@@ -63,7 +63,8 @@ group :test, :development do
 	gem 'factory_girl'
 	gem 'factory_girl_rails'
 #	gem 'shoulda-matchers'
-	gem 'simplecov-rcov'
+	gem 'simplecov', '~> 0.7.1', require: false
+	gem 'simplecov-rcov', require: false
 	gem 'database_cleaner'
 end
 
