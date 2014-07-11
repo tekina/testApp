@@ -1,9 +1,9 @@
-# Read about factories at https://github.com/thoughtbot/factory_girl
+require 'faker'
 
 FactoryGirl.define do
   factory :comment do
-    content "MyText"
-    commentable_id 1
-    commentable_type "MyString"
+    content Faker::Lorem.sentence
+    commentable_id Faker::Number.digit
+    commentable_type "Blog"
   end
 end

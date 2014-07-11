@@ -124,10 +124,11 @@
       "/home/aniket/workspace/railsTest/rLogin/app/models/comment.rb": [
         1,
         1,
+        1,
         null
       ]
     },
-    "timestamp": 1405060973
+    "timestamp": 1405071502
   },
   "Cucumber Features": {
     "coverage": {
