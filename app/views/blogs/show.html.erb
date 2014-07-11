@@ -18,8 +18,10 @@
 <%= link_to 'Edit', edit_blog_path(@blog) %> |
 <%= link_to 'Back', blogs_path %>
 
-<%= semantic_form_for @comments do |f| %>
-  <%= f.inputs%>
-  <%= f.buttons %>
-  <% end %>
+<%= semantic_form_for @comment do |f| %>
+  <%= f.input :content %>
+  <%= f.input :commentable_type, as: :hidden %>
+  <%= f.hidden_field :commentable_id %>
+  <%= f.submit %>
+<% end %>
 

@@ -11,6 +11,8 @@ class BlogsController < ApplicationController
   # GET /blogs/1.json
   def show
     @blog = Blog.find(params[:id])
+    @comment = Comment.new
+    @comment.commentable = @blog
   end
 
   # GET /blogs/new
@@ -23,11 +25,20 @@ class BlogsController < ApplicationController
     @blog = Blog.find(params[:id])
   end
 
+  def find_commentable
+      params.each do |name, value|
+        if name =~ /(.+)_id$/
+           return $1.classify.constantize.find(value) unless name == 'user_id'
+        end
+      end
+      nil
+   end
+
+
   # POST /blogs
   # POST /blogs.json
   def create
     @blog = Blog.new(blog_params.merge(user_id: current_user.try(:id)))
-
     respond_to do |format|
       if @blog.save
         format.html { redirect_to @blog, notice: 'Blog was successfully created.' }
