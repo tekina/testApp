@@ -19,7 +19,7 @@
 <%= link_to 'Back', blogs_path %>
 
 <%= semantic_form_for @comment do |f| %>
-  <%= f.input :content %>
+  <%= f.input :content, input_html: { class: 'autogrow', rows: 4 }%>
   <%= f.input :commentable_type, as: :hidden %>
   <%= f.hidden_field :commentable_id %>
   <%= f.submit %>
