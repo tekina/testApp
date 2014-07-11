@@ -1,6 +1,7 @@
 class Blog < ActiveRecord::Base
 	belongs_to :user
-	has_many :comment, as: :commentable
+	has_many :comments, as: :commentable
+	accepts_nested_attributes_for :comments
 	# validates :user, presence: true
 	# validates :user_id, presence: {message: "Field User cannot be blank."}
 	validates :post, presence: {message: "Post cannot be blank"}

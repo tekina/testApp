@@ -86,4 +86,7 @@ gem 'therubyracer'
 gem 'less-rails'
 gem 'twitter-bootstrap-rails', '~> 2.2.8'
 
+# for creating forms
+gem 'formtastic'
+
 ruby "2.0.0"
