@@ -89,4 +89,7 @@ gem 'twitter-bootstrap-rails', '~> 2.2.8'
 # for creating forms
 gem 'formtastic'
 
+# for restricting user access
+gem 'cancan'
+
 ruby "2.0.0"

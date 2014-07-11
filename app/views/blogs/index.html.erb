@@ -19,8 +19,12 @@
         <td><%= blog.post %></td>
         <td><%= blog.summary %></td>
         <td><%= link_to 'Show', blog %></td>
-        <td><%= link_to 'Edit', edit_blog_path(blog) %></td>
-        <td><%= link_to 'Destroy', blog, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><% if can? :update, Blog %>
+          <%= link_to 'Edit', edit_blog_path(blog) %>
+        <% end %></td>
+        <td><% if can? :destroy, Blog %>
+          <%= link_to 'Destroy', blog, method: :delete, data: { confirm: 'Are you sure?' } %>
+        <% end %></td>
       </tr>
     <% end %>
   </tbody>
@@ -28,5 +32,6 @@
 </table>
 
 <br>
-
+<% if can? :create, Blog %>
 <%= link_to 'New Blog', new_blog_path %>
+<% end %>

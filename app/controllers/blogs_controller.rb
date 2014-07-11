@@ -1,6 +1,6 @@
 class BlogsController < ApplicationController
-  before_filter :authenticate_user!
-
+  # before_action :authenticate_user!
+  # before_action :set_blog, only: [:show]
   # GET /blogs
   # GET /blogs.json
   def index
@@ -11,6 +11,7 @@ class BlogsController < ApplicationController
   # GET /blogs/1.json
   def show
     @blog = Blog.find(params[:id])
+    @comment_list = Comment.all
     @comment = Comment.new
     @comment.commentable = @blog
   end
@@ -24,16 +25,6 @@ class BlogsController < ApplicationController
   def edit
     @blog = Blog.find(params[:id])
   end
-
-  def find_commentable
-      params.each do |name, value|
-        if name =~ /(.+)_id$/
-           return $1.classify.constantize.find(value) unless name == 'user_id'
-        end
-      end
-      nil
-   end
-
 
   # POST /blogs
   # POST /blogs.json
@@ -53,6 +44,7 @@ class BlogsController < ApplicationController
   # PATCH/PUT /blogs/1
   # PATCH/PUT /blogs/1.json
   def update
+    @blog = Blog.find(params[:id])
     respond_to do |format|
       if @blog.update(blog_params)
         format.html { redirect_to @blog, notice: 'Blog was successfully updated.' }
@@ -67,6 +59,7 @@ class BlogsController < ApplicationController
   # DELETE /blogs/1
   # DELETE /blogs/1.json
   def destroy
+    @blog = Blog.find(params[:id])
     @blog.destroy
     respond_to do |format|
       format.html { redirect_to blogs_url }
