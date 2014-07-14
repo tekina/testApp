@@ -7,7 +7,7 @@ class Ability
       can :read, Blog
     else
       can [:read, :create], Blog
-      can [:update, :destroy], Blog, id: user.id
+      can [:update, :destroy], Blog, user_id: user.id
     end
     # Define abilities for the passed in user here. For example:
     #

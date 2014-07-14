@@ -92,4 +92,7 @@ gem 'formtastic'
 # for restricting user access
 gem 'cancan'
 
+# for getting rid of erb files
+gem 'haml'
+
 ruby "2.0.0"

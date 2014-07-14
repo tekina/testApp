@@ -1,6 +1,132 @@
 {
   "RSpec": {
     "coverage": {
+      "/home/aniket/workspace/railsTest/rLogin/app/models/blog.rb": [
+        1,
+        1,
+        1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null
+      ],
+      "/home/aniket/workspace/railsTest/rLogin/app/helpers/application_helper.rb": [
+        1,
+        null
+      ],
+      "/home/aniket/workspace/railsTest/rLogin/app/helpers/blogs_helper.rb": [
+        1,
+        null
+      ],
+      "/home/aniket/workspace/railsTest/rLogin/app/helpers/comments_helper.rb": [
+        1,
+        null
+      ],
+      "/home/aniket/workspace/railsTest/rLogin/app/controllers/blogs_controller.rb": [
+        1,
+        null,
+        null,
+        null,
+        null,
+        1,
+        1,
+        null,
+        null,
+        null,
+        null,
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null,
+        null,
+        1,
+        1,
+        null,
+        null,
+        null,
+        1,
+        1,
+        null,
+        null,
+        null,
+        null,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        null,
+        2,
+        1,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        null,
+        2,
+        1,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        1,
+        1,
+        1,
+        1,
+        2,
+        1,
+        null,
+        null,
+        null,
+        1,
+        null,
+        1,
+        0,
+        null,
+        null,
+        null,
+        1,
+        2,
+        null,
+        null
+      ],
+      "/home/aniket/workspace/railsTest/rLogin/app/controllers/application_controller.rb": [
+        1,
+        null,
+        null,
+        1,
+        null
+      ],
+      "/home/aniket/workspace/railsTest/rLogin/app/models/comment.rb": [
+        1,
+        1,
+        1,
+        null
+      ]
+    },
+    "timestamp": 1405083776
+  },
+  "Cucumber Features": {
+    "coverage": {
       "/home/aniket/workspace/railsTest/rLogin/app/models/user.rb": [
         1,
         1,
@@ -25,11 +151,12 @@
       "/home/aniket/workspace/railsTest/rLogin/app/controllers/comments_controller.rb": [
         1,
         1,
+        1,
         null,
         null,
         null,
         1,
-        1,
+        0,
         null,
         null,
         null,
@@ -40,7 +167,7 @@
         null,
         null,
         1,
-        1,
+        0,
         null,
         null,
         null,
@@ -128,47 +255,6 @@
         null
       ]
     },
-    "timestamp": 1405071645
-  },
-  "Cucumber Features": {
-    "coverage": {
-      "/home/aniket/workspace/railsTest/rLogin/app/models/user.rb": [
-        1,
-        1,
-        null,
-        null,
-        1,
-        null,
-        null
-      ],
-      "/home/aniket/workspace/railsTest/rLogin/app/helpers/application_helper.rb": [
-        1,
-        null
-      ],
-      "/home/aniket/workspace/railsTest/rLogin/app/helpers/blogs_helper.rb": [
-        1,
-        null
-      ],
-      "/home/aniket/workspace/railsTest/rLogin/app/models/blog.rb": [
-        1,
-        1,
-        null,
-        1,
-        1,
-        1,
-        1,
-        1,
-        null,
-        null
-      ],
-      "/home/aniket/workspace/railsTest/rLogin/app/controllers/application_controller.rb": [
-        1,
-        null,
-        null,
-        1,
-        null
-      ]
-    },
-    "timestamp": 1404985224
+    "timestamp": 1405083743
   }
 }

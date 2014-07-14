@@ -29,6 +29,7 @@ class BlogsController < ApplicationController
   # POST /blogs
   # POST /blogs.json
   def create
+    redirect_to action: 'index' and return  if !user_signed_in? 
     @blog = Blog.new(blog_params.merge(user_id: current_user.try(:id)))
     respond_to do |format|
       if @blog.save
@@ -44,6 +45,7 @@ class BlogsController < ApplicationController
   # PATCH/PUT /blogs/1
   # PATCH/PUT /blogs/1.json
   def update
+    redirect_to action: 'index' and return  if !user_signed_in? 
     @blog = Blog.find(params[:id])
     respond_to do |format|
       if @blog.update(blog_params)
