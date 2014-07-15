@@ -94,5 +94,7 @@ gem 'cancan'
 
 # for getting rid of erb files
 gem 'haml'
+gem 'html2haml'
+gem 'haml-rails'
 
 ruby "2.0.0"

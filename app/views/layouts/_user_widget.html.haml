@@ -1,0 +1,7 @@
+- if user_signed_in?
+  %p
+    Welcome #{current_user.email}
+  %p
+    Your User ID is: #{current_user.id}
+- else
+  %p You are not signed in.

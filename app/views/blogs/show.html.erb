@@ -18,6 +18,10 @@
 <%= link_to 'Edit', edit_blog_path(@blog) %> |
 <%= link_to 'Back', blogs_path %>
 
+<% @comment_list.each do |c| %>
+<br>  <%= c.content %>
+<% end %>
+
 <%= semantic_form_for @comment do |f| %>
   <%= f.input :content, input_html: { class: 'autogrow', rows: 4 }%>
   <%= f.input :commentable_type, as: :hidden %>

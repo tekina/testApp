@@ -1,0 +1,19 @@
+%p#notice= notice
+%p
+  %strong User:
+  = User.find(@blog.user_id).email
+%p
+  %strong Post:
+  = @blog.post
+%p
+  %strong Summary:
+  = @blog.summary
+= link_to 'Edit', edit_blog_path(@blog)
+|
+\#{link_to 'Back', blogs_path}
+
+\#{semantic_form_for @comment do |f|}
+  = f.input :content, input_html: { class: 'autogrow', rows: 4 }
+  = f.input :commentable_type, as: :hidden
+  = f.hidden_field :commentable_id
+  = f.submit

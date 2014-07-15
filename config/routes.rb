@@ -1,4 +1,6 @@
 RLogin::Application.routes.draw do
+  get "sessions/create"
+  get "sessions/destroy"
   resources :comments
 
   resources :blogs
@@ -10,8 +12,25 @@ RLogin::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
  
-    root 'blogs#index'
- 
+  namespace :api do
+    namespace :v1 do
+      devise_scope :user do
+        post "/sign_in", :to => 'sessions#create'
+        delete "/sign_out", :to => 'sessions#destroy'
+      end
+    end
+  end
+
+
+  # routes for api_controller
+  root 'blogs#index'
+  get 'api/:id' => 'api#show'
+  get 'api' => 'api#index'
+  get 'api/:id/edit' => 'api#edit'
+  post 'api' => 'api#create'
+
+
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
