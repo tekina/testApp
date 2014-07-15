@@ -26,9 +26,10 @@ RLogin::Application.routes.draw do
   root 'blogs#index'
   get 'api/:id' => 'api#show'
   get 'api' => 'api#index'
-  get 'api/:id/edit' => 'api#edit'
   post 'api' => 'api#create'
-
+  get 'api/:id/edit' => 'api#edit'
+  put 'api/:id' => 'api#update'
+  delete 'api/:id' => 'api#destroy'
 
 
   # Example of regular route:

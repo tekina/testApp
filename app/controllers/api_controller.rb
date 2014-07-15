@@ -29,15 +29,21 @@ class ApiController < ApplicationController
   # POST /api
   # POST /api.json
   def create
-    # redirect_to action: 'index' and return  if !user_signed_in? 
-    @blog = Blog.new(blog_params.merge(user_id: current_user.try(:id)))
-    respond_to do |format|
-      if @blog.save
-        # format.html { redirect_to @blog, notice: 'Blog was successfully created.' }
-        format.json { render json: @blog, status: :created, location: @blog }
-      else
-        # format.html { render action: 'new' }
-        format.json { render json: @blog.errors, status: :unprocessable_entity }
+    # redirect_to action: 'index' and return  
+    if user_signed_in? 
+      @blog = Blog.new(blog_params.merge(user_id: current_user.try(:id)))
+      respond_to do |format|
+        if @blog.save
+          # format.html { redirect_to @blog, notice: 'Blog was successfully created.' }
+          format.json { render json: @blog, status: :created, location: @blog }
+        else
+          # format.html { render action: 'new' }
+          format.json { render json: @blog.errors, status: :unprocessable_entity }
+        end
+      end
+    else
+      respond_to do |format|
+        format.json { render json: 'Unable to create blog post. Are you logged in?'.to_json, status: :unprocessable_entity}
       end
     end
   end
@@ -45,15 +51,21 @@ class ApiController < ApplicationController
   # PATCH/PUT /api/1
   # PATCH/PUT /api/1.json
   def update
-    redirect_to action: 'index' and return  if !user_signed_in? 
-    @blog = Blog.find(params[:id])
-    respond_to do |format|
-      if @blog.update(blog_params)
-        # format.html { redirect_to @blog, notice: 'Blog was successfully updated.' }
-        format.json { head :no_content }
-      else
-        # format.html { render action: 'edit' }
-        format.json { render json: @blog.errors, status: :unprocessable_entity }
+    # redirect_to action: 'index' and return  if !user_signed_in? 
+    if user_signed_in?
+      @blog = Blog.find(params[:id])
+      respond_to do |format|
+        if @blog.update(blog_params)
+          # format.html { redirect_to @blog, notice: 'Blog was successfully updated.' }
+          format.json {render json: @blog, status: :created, location: @blog } # head :no_content
+        else
+          # format.html { render action: 'edit' }
+          format.json { render json: @blog.errors, status: :unprocessable_entity }
+        end
+      end
+    else
+      respond_to do |format|
+        format.json { render json: 'Unable to edit blog post. Are you logged in?'.to_json, status: :unprocessable_entity}
       end
     end
   end
@@ -61,11 +73,16 @@ class ApiController < ApplicationController
   # DELETE /api/1
   # DELETE /api/1.json
   def destroy
-    @blog = Blog.find(params[:id])
-    @blog.destroy
-    respond_to do |format|
-      format.html { redirect_to blogs_url }
-      format.json { head :no_content }
+    if user_signed_in?
+      @blog = Blog.find(params[:id])
+      @blog.destroy
+      respond_to do |format|
+        format.json { render json: "Deleted blog post!".to_json } #head :no_content }
+      end
+    else
+      respond_to do |format|
+        format.json { render json: 'You have to log in before deleting a post'.to_json, status: :unprocessable_entity}
+      end
     end
   end
 

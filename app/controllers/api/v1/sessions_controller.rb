@@ -18,10 +18,10 @@ class Api::V1::SessionsController < DeviseController
     set_flash_message(:notice, :signed_in) if is_navigational_format?
     sign_in(resource_name, resource)
 
-        respond_to do |format|
-                format.json { render :json => "Signed in!".to_json, :status => :ok }
-                format.html { respond_with resource, :location => after_sign_in_path_for(resource) } 
-        end
+    respond_to do |format|
+      format.json { render :json => "Signed in!".to_json, :status => :ok }
+      format.html { respond_with resource, :location => after_sign_in_path_for(resource) } 
+    end
   end
 
   # DELETE /resource/sign_out
