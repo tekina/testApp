@@ -200,6 +200,10 @@ GEM
       json (~> 1.8)
       rdoc (~> 4.0, < 5.0)
     sexp_processor (4.4.3)
+    simple_token_authentication (1.5.0)
+      actionmailer (>= 3.2.6, < 5)
+      activerecord (>= 3.2.6, < 5)
+      devise (~> 3.2.0)
     simplecov (0.7.1)
       multi_json (~> 1.0)
       simplecov-html (~> 0.7.1)
@@ -277,6 +281,7 @@ DEPENDENCIES
   rspec-rails
   sass-rails (~> 4.0.0)
   sdoc
+  simple_token_authentication
   simplecov (~> 0.7.1)
   simplecov-rcov
   sqlite3

@@ -92,6 +92,9 @@ gem 'formtastic'
 # for restricting user access
 gem 'cancan'
 
+#tokens for api login
+gem 'simple_token_authentication'
+
 # for getting rid of erb files
 gem 'haml'
 gem 'html2haml'

@@ -1,6 +1,11 @@
-require 'rails_helper'
-include Warden::Test::Helpers
-Warden.test_mode!
+require 'spec_helper'
+
+include Devise::TestHelpers                          
+include Warden::Test::Helpers                        
+Warden.test_mode!                                    
+
+# user = FactoryGirl.create(:user)
+# login_as(user, :scope => :user)
 
 RSpec.describe BlogsController, :type => :controller do
 	# login_user
