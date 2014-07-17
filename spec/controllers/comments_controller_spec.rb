@@ -21,27 +21,17 @@ Warden.test_mode!
 # Message expectations are only used when there is no simpler way to specify
 # that an instance is receiving a specific message.
 
-RSpec.describe CommentsController, :type => :controller do
+RSpec.describe CommentsController, type: :controller do
 
 
   before(:each) do
     request.env["HTTP_REFERER"] = '/comments'
     sign_out :user
   end
-  # This should return the minimal set of attributes required to create a valid
-  # Comment. As you add validations to Comment, be sure to
-  # adjust the attributes here as well.
-  let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
-  }
-
-  let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
-  }
 
   def login_user
-  @user = FactoryGirl.create(:user)  
-  sign_in @user
+    @user = FactoryGirl.create(:user)  
+    sign_in @user
   end
 
   describe "GET index" do
@@ -73,7 +63,7 @@ RSpec.describe CommentsController, :type => :controller do
     it "assigns the requested comment as @comment" do
       login_user
       @comment = FactoryGirl.create(:comment)
-      get :edit, {:id => @comment.id}
+      get :edit, {id: @comment.id}
       expect(assigns(:comment)).to eq(@comment)
     end
   end
@@ -101,7 +91,7 @@ RSpec.describe CommentsController, :type => :controller do
         @comment = FactoryGirl.create(:comment)
         request.env["HTTP_REFERER"] = '/comments/' + @comment.id.to_s
         post :create, {comment: @comment.attributes}
-        # post :create, {:comment => valid_attributes}, valid_session
+        # post :create, {comment: valid_attributes}, valid_session
         expect(response).to redirect_to('/comments/' + @comment.id.to_s) #Comment.last)
       end
     end
@@ -114,37 +104,29 @@ RSpec.describe CommentsController, :type => :controller do
         post :create, {comment: @comment.attributes}
         expect(@comment).to be_a(Comment)
       end
-
-      # it "re-renders the 'new' template" do
-      #   login_user
-      #   @comment = FactoryGirl.create(:comment)
-      #   # @comment.content = nil
-      #   post :create, {comment: @comment.attributes}
-      #   expect(response).to render_template("/comments/new")
-      # end
-     end
-   end
+    end
+  end
 
   describe "PUT update" do
     describe "with valid params" do
       it "updates the requested comment" do
         @comment = FactoryGirl.create(:comment)
         login_user
-        put :update, {:id => @comment.id, comment: @comment.attributes}
+        put :update, {id: @comment.id, comment: @comment.attributes}
         @comment.reload
       end
 
       it "assigns the requested comment as @comment" do
         login_user
         @comment = FactoryGirl.create(:comment)
-        put :update, {:id => @comment.id, comment: @comment.attributes}
+        put :update, {id: @comment.id, comment: @comment.attributes}
         expect(assigns(:comment)).to eq(@comment)
       end
 
       it "redirects to the comment" do
          login_user
         @comment = FactoryGirl.create(:comment)
-        put :update, {:id => @comment.id, comment: @comment.attributes}
+        put :update, {id: @comment.id, comment: @comment.attributes}
         expect(response).to redirect_to(Comment.last)
       end
     end
@@ -154,7 +136,7 @@ RSpec.describe CommentsController, :type => :controller do
         login_user
         @comment = FactoryGirl.create(:comment)
         @comment.content = nil
-        put :update, {:id => @comment.id, comment: @comment.attributes}
+        put :update, {id: @comment.id, comment: @comment.attributes}
         expect(assigns(:comment)).to eq(@comment)
       end
 
@@ -162,7 +144,7 @@ RSpec.describe CommentsController, :type => :controller do
         login_user
         @comment = FactoryGirl.create(:comment)
         @comment.content = nil
-        put :update, {:id => @comment.id, comment: @comment.attributes}
+        put :update, {id: @comment.id, comment: @comment.attributes}
         expect(response).to render_template("comments/edit")
       end
     end
