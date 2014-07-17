@@ -1,4 +1,4 @@
-require 'rails_helper'
+require 'spec_helper'
 include Warden::Test::Helpers                        
 Warden.test_mode!                                    
 
@@ -23,6 +23,11 @@ Warden.test_mode!
 
 RSpec.describe CommentsController, :type => :controller do
 
+
+  before(:each) do
+    request.env["HTTP_REFERER"] = '/comments'
+    sign_out :user
+  end
   # This should return the minimal set of attributes required to create a valid
   # Comment. As you add validations to Comment, be sure to
   # adjust the attributes here as well.
@@ -37,58 +42,70 @@ RSpec.describe CommentsController, :type => :controller do
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
   # CommentsController. Be sure to keep this updated too.
-  let(:valid_session) {
-    :authenticate_user!
-  }
+  def login_user
+  @user = FactoryGirl.create(:user)  
+  sign_in @user
+  end
 
   describe "GET index" do
-    it "assigns all comments as @comments" do
-      comment = Comment.create! valid_attributes
-      get :index, {} #, valid_session
-      expect(assigns(:comments)).to eq([comment])
+    it "has a 200 status code" do
+      login_user
+      get :index
+      expect(response.status).to eq(200)
     end
   end
 
   describe "GET show" do
     it "assigns the requested comment as @comment" do
-      comment = Comment.create! valid_attributes
-      get :show, {:id => comment.to_param}, valid_session
-      expect(assigns(:comment)).to eq(comment)
+      login_user
+      @comment = FactoryGirl.create(:comment)
+      get :show, {id: @comment.id}
+      expect(assigns(:comment)).to eq(@comment)
     end
   end
 
-  # describe "GET new" do
-  #   it "assigns a new comment as @comment" do
-  #     get :new, {}, valid_session
-  #     expect(assigns(:comment)).to be_a_new(Comment)
-  #   end
-  # end
+  describe "GET new" do
+    it "assigns a new comment as @comment" do
+      login_user
+      get :new, {}
+      expect(assigns(:comment)).to be_a_new(Comment)
+    end
+  end
 
   describe "GET edit" do
     it "assigns the requested comment as @comment" do
-      comment = Comment.create! valid_attributes
-      get :edit, {:id => comment.to_param}, valid_session
-      expect(assigns(:comment)).to eq(comment)
+      login_user
+      @comment = FactoryGirl.create(:comment)
+      get :edit, {:id => @comment.id}
+      expect(assigns(:comment)).to eq(@comment)
     end
   end
 
   describe "POST create" do
     describe "with valid params" do
       it "creates a new Comment" do
+        login_user
+        @comment = FactoryGirl.create(:comment)
         expect {
-          post :create, {:comment => valid_attributes}, valid_session
+          post :create, {comment: @comment.attributes}
         }.to change(Comment, :count).by(1)
       end
 
       it "assigns a newly created comment as @comment" do
-        post :create, {:comment => valid_attributes}, valid_session
-        expect(assigns(:comment)).to be_a(Comment)
-        expect(assigns(:comment)).to be_persisted
+        login_user
+        @comment = FactoryGirl.create(:comment)
+        post :create, {comment: @comment.attributes}
+        expect(@comment).to be_a(Comment)
+        expect(@comment).to be_persisted
       end
 
       it "redirects to the created comment" do
-        post :create, {:comment => valid_attributes}, valid_session
-        expect(response).to redirect_to(Comment.last)
+        login_user
+        @comment = FactoryGirl.create(:comment)
+        request.env["HTTP_REFERER"] = '/comments/' + @comment.id.to_s
+        post :create, {comment: @comment.attributes}
+        # post :create, {:comment => valid_attributes}, valid_session
+        expect(response).to redirect_to('/comments/' + @comment.id.to_s) #Comment.last)
       end
     end
 
