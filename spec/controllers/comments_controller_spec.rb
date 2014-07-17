@@ -39,9 +39,6 @@ RSpec.describe CommentsController, :type => :controller do
     skip("Add a hash of attributes invalid for your model")
   }
 
-  # This should return the minimal set of values that should be in the session
-  # in order to pass any filters (e.g. authentication) defined in
-  # CommentsController. Be sure to keep this updated too.
   def login_user
   @user = FactoryGirl.create(:user)  
   sign_in @user
@@ -111,71 +108,80 @@ RSpec.describe CommentsController, :type => :controller do
 
     describe "with invalid params" do
       it "assigns a newly created but unsaved comment as @comment" do
-        post :create, {:comment => invalid_attributes}, valid_session
-        expect(assigns(:comment)).to be_a_new(Comment)
+        login_user
+        @comment = FactoryGirl.create(:comment)
+        @comment.content = nil
+        post :create, {comment: @comment.attributes}
+        expect(@comment).to be_a(Comment)
       end
 
-      it "re-renders the 'new' template" do
-        post :create, {:comment => invalid_attributes}, valid_session
-        expect(response).to render_template("new")
-      end
-    end
-  end
+      # it "re-renders the 'new' template" do
+      #   login_user
+      #   @comment = FactoryGirl.create(:comment)
+      #   # @comment.content = nil
+      #   post :create, {comment: @comment.attributes}
+      #   expect(response).to render_template("/comments/new")
+      # end
+     end
+   end
 
   describe "PUT update" do
     describe "with valid params" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
-
       it "updates the requested comment" do
-        comment = Comment.create! valid_attributes
-        put :update, {:id => comment.to_param, :comment => new_attributes}, valid_session
-        comment.reload
-        skip("Add assertions for updated state")
+        @comment = FactoryGirl.create(:comment)
+        login_user
+        put :update, {:id => @comment.id, comment: @comment.attributes}
+        @comment.reload
       end
 
       it "assigns the requested comment as @comment" do
-        comment = Comment.create! valid_attributes
-        put :update, {:id => comment.to_param, :comment => valid_attributes}, valid_session
-        expect(assigns(:comment)).to eq(comment)
+        login_user
+        @comment = FactoryGirl.create(:comment)
+        put :update, {:id => @comment.id, comment: @comment.attributes}
+        expect(assigns(:comment)).to eq(@comment)
       end
 
       it "redirects to the comment" do
-        comment = Comment.create! valid_attributes
-        put :update, {:id => comment.to_param, :comment => valid_attributes}, valid_session
-        expect(response).to redirect_to(comment)
+         login_user
+        @comment = FactoryGirl.create(:comment)
+        put :update, {:id => @comment.id, comment: @comment.attributes}
+        expect(response).to redirect_to(Comment.last)
       end
     end
 
     describe "with invalid params" do
       it "assigns the comment as @comment" do
-        comment = Comment.create! valid_attributes
-        put :update, {:id => comment.to_param, :comment => invalid_attributes}, valid_session
-        expect(assigns(:comment)).to eq(comment)
+        login_user
+        @comment = FactoryGirl.create(:comment)
+        @comment.content = nil
+        put :update, {:id => @comment.id, comment: @comment.attributes}
+        expect(assigns(:comment)).to eq(@comment)
       end
 
       it "re-renders the 'edit' template" do
-        comment = Comment.create! valid_attributes
-        put :update, {:id => comment.to_param, :comment => invalid_attributes}, valid_session
-        expect(response).to render_template("edit")
+        login_user
+        @comment = FactoryGirl.create(:comment)
+        @comment.content = nil
+        put :update, {:id => @comment.id, comment: @comment.attributes}
+        expect(response).to render_template("comments/edit")
       end
     end
   end
 
   describe "DELETE destroy" do
     it "destroys the requested comment" do
-      comment = Comment.create! valid_attributes
+      login_user
+      @comment = FactoryGirl.create(:comment)
       expect {
-        delete :destroy, {:id => comment.to_param}, valid_session
+        delete :destroy, {id: @comment.id}
       }.to change(Comment, :count).by(-1)
     end
 
     it "redirects to the comments list" do
-      comment = Comment.create! valid_attributes
-      delete :destroy, {:id => comment.to_param}, valid_session
+      login_user
+      @comment = FactoryGirl.create(:comment)
+      delete :destroy, {id: @comment.id}
       expect(response).to redirect_to(comments_url)
     end
   end
-
 end
