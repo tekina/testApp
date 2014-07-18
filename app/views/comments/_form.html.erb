@@ -16,12 +16,10 @@
     <%= f.text_area :content %>
   </div>
   <div class="field">
-    <%= f.label :commentable_id %><br>
-    <%= f.number_field :commentable_id %>
+    <%= f.hidden_field :commentable_id %>
   </div>
   <div class="field">
-    <%= f.label :commentable_type %><br>
-    <%= f.text_field :commentable_type %>
+    <%= f.hidden_field :commentable_type %>
   </div>
   <div class="actions">
     <%= f.submit %>

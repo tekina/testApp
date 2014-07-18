@@ -1,23 +1,38 @@
 class Api::V1::SessionsController < DeviseController
+  prepend_before_filter :require_no_authentication, :only => [:create ]
   # https://github.com/plataformatec/devise/blob/master/app/controllers/devise/sessions_controller.rb
+
+  before_filter :ensure_params_exist
+ 
+  respond_to :json
 
   # POST /resource/sign_in
   # Resets the authentication token each time! Won't allow you to login on two devices
   # at the same time (so does logout).
 
   def create
-    self.resource = warden.authenticate!#(auth_options)
-    sign_in(resource_name, resource)
+    build_resource
+    resource = User.find_for_database_authentication(:login=>params[:user_login][:login])
+    return invalid_login_attempt unless resource
  
-    current_user.update authentication_token: nil
- 
-    respond_to do |format|
-      format.json {
-        render :json => (current_user.authentication_token).to_json, status: :ok }
-          # :user => current_user,
-          # :authentication_token => 
+    if resource.valid_password?(params[:user_login][:password])
+      sign_in("user", resource)
+      render :json=> {:success=>true, :auth_token=>resource.authentication_token, :login=>resource.login, :email=>resource.email}
+      return
     end
+    invalid_login_attempt
   end
+
+  # def create
+  #   self.resource = warden.authenticate!#(auth_options)
+  #   sign_in(resource_name, resource)
+ 
+  #   current_user.update authentication_token: nil
+ 
+  #   respond_to do |format|
+  #     render :json => {info: "Logged in", user: :current_user, auth_token: current_user.authentication_token}, status: 200
+  #   end
+  # end
 
   # DELETE /resource/sign_out
   def destroy
@@ -26,7 +41,7 @@ class Api::V1::SessionsController < DeviseController
         if current_user
           current_user.update authentication_token: nil
           signed_out = (Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name))
-          render :json => "Signed out successfully!".to_json, status: :ok
+          render :json => { :info => "Logged out" }, :status => 200
         else
           render :json => {}.to_json, :status => :unprocessable_entity
         end
@@ -36,7 +51,16 @@ class Api::V1::SessionsController < DeviseController
 end
 
 
-
+ private
+  def ensure_params_exist
+    return unless params[:user_login].blank?
+    render :json=>{:success=>false, :message=>"missing user_login parameter"}, :status=>422
+  end
+ 
+  def invalid_login_attempt
+    warden.custom_failure!
+    render :json=> {:success=>false, :message=>"Error with your login or password"}, :status=>401
+  end
 
 
 #    # acts_as_token_authentication_handler_for User

@@ -71,9 +71,11 @@ end
 group :test do
 	gem 'faker'
 	gem 'capybara'
+	gem 'selenium-webdriver'	#for testing js code
 	gem 'guard'
  	gem 'guard-rspec'
  	gem 'launchy'
+ 	gem 'cucumber-rails', :require => false
 # 	gem 'autotest'
 # 	gem 'autotest-standalone'
 end

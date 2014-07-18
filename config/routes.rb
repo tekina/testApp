@@ -1,6 +1,6 @@
 RLogin::Application.routes.draw do
-  # get "sessions/create"
-  # get "sessions/destroy"
+   get "sessions/create"
+   get "sessions/destroy"
   resources :comments
 
   resources :blogs
@@ -16,7 +16,7 @@ RLogin::Application.routes.draw do
  
   devise_for :users, skip: [:sessions] #, :passwords, :registrations]
   # routes for api_controller
-  namespace :api do
+  namespace :api, defaults: {format: 'json'} do
     namespace :v1 do
       devise_scope :user do
         post "/sign_in", :to => 'sessions#create'

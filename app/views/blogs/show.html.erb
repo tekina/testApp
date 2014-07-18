@@ -17,15 +17,26 @@
 
 <%= link_to 'Edit', edit_blog_path(@blog) %> |
 <%= link_to 'Back', blogs_path %>
-
+<br>
+<br>
+<br>
+<p>
+<strong>Comments on this post:</strong>
+<br>
 <% @comment_list.each do |c| %>
-<br>  <%= c.content %>
+  <%= c.content if c.commentable_id == @blog.id%>  <br>  
 <% end %>
+</p>
 
+<br>
+<br>
+<p>
+  <strong> Add a comment: </strong>
+  <br>
 <%= semantic_form_for @comment do |f| %>
   <%= f.input :content, input_html: { class: 'autogrow', rows: 4 }%>
   <%= f.input :commentable_type, as: :hidden %>
   <%= f.hidden_field :commentable_id %>
   <%= f.submit %>
 <% end %>
-
+</p>

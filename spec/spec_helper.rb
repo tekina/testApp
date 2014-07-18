@@ -33,6 +33,19 @@ SimpleCov.coverage_dir "coverage"
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
   config.include Devise::TestHelpers, type: :controller
+
+  config.before(:suite) do  
+    DatabaseCleaner.strategy = :truncation  
+  end  
+  
+  config.before(:each) do  
+    DatabaseCleaner.start  
+  end  
+  
+  config.after(:each) do  
+    DatabaseCleaner.clean  
+  end  
+
   # config.extend ControllerMacros, :type => :controller
 # The settings below are suggested to provide a good initial experience
 # with RSpec, but feel free to customize to your heart's content.

@@ -18,6 +18,24 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 ActiveRecord::Migration.check_pending! if defined?(ActiveRecord::Migration)
 
 RSpec.configure do |config|
+  
+  #   DatabaseCleaner.start  
+  #   DatabaseCleaner.strategy = :truncation  
+  # config.before(:each) do  
+  # config.before(:suite) do  
+  # end  
+  # end  
+  
+  if Capybara.current_driver == :rack_test
+    DatabaseCleaner.strategy = :transaction
+  else
+    DatabaseCleaner.strategy = :truncation
+  end
+  DatabaseCleaner.start
+
+  config.after(:each) do  
+    DatabaseCleaner.clean  
+  end  
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
 #  config.fixture_path = "#{::Rails.root}/spec/fixtures"
 

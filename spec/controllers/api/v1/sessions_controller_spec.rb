@@ -1,11 +1,22 @@
 require 'spec_helper'
 
-RSpec.describe Api::V1::SessionsController, :type => :controller do
+RSpec.describe Api::V1::SessionsController, type: :controller do
+
+  def login_user
+    
+  end
 
   # describe "POST 'create'" do
-  #   before :each do
-  #     @request.env['devise.mapping'] = Devise.mappings[:user]
+  #   it "returns status 200" do
+  #     @user = FactoryGirl.create(:user)
+  #     request_json = {
+  #     email: @user.email,
+  #     password: @user.password } 
+  #     post sign_in, request_json
+  #     expect(json['message']).to_not be(nil)
+  #     expect(response.status).to eq(200)
   #   end
+  # end
     
   #   it "returns http success" do
   #     post :create
