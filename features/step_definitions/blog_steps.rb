@@ -33,3 +33,11 @@ end
 Then(/^I should see "(.*?)"$/) do |arg1|
 	expect(page).to have_text(arg1)
 end
+
+Given(/^I have created a blog$/) do
+  step %Q{I follow "New Blog"}
+	step %Q{I fill in "Post" with "Illo qui voluptas. Id sit quaerat enim aut cupiditate voluptates dolorum."}
+	step %Q{I fill in "Summary" with "Post Summary"}
+	step %Q{I press "Create Blog"}
+	step %Q{I should see "Blog was successfully created."}
+end
