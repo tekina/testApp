@@ -1,5 +1,8 @@
 require 'spec_helper'
 
+# include Devise::TestHelpers                          
+include Warden::Test::Helpers                        
+Warden.test_mode! 
 RSpec.describe Api::V1::SessionsController, type: :controller do
 
   def login_user
@@ -17,7 +20,7 @@ RSpec.describe Api::V1::SessionsController, type: :controller do
   #     expect(response.status).to eq(200)
   #   end
   # end
-    
+  
   #   it "returns http success" do
   #     post :create
   #     expect(response).to be_success

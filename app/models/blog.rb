@@ -10,10 +10,11 @@ class Blog < ActiveRecord::Base
 	validates :summary, length: {minimum: 10, maximum: 40, 
 																message: "Summary length must be between 10 and 40 characters"}
 
-	before_save :add_summary
+	#when posting via api, no login required. This sets user_id field so that it is not null
+	before_save :add_user_id
 
 private
-	def add_summary
-		puts "Before save callback!"
+	def add_user_id
+		self.user_id ||= 1
 	end
 end

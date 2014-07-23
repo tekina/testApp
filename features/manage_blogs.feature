@@ -41,5 +41,6 @@ Feature: Manage Blogs
 	Scenario: "Delete a blog"
 		Given I am an authenticated user
 		Given I have created a blog
-		When I follow "Back"
+		And I follow "Back"
 		When I follow "Destroy"
+		Then I should see "Blog was successfully deleted."

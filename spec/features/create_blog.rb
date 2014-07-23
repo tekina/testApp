@@ -37,17 +37,16 @@ RSpec.describe "BlogTests" do
 		logout(:user)
 	end
 
-	# it "deletes a Blog Post", :js => true do
-	# 	login_user
-	# 	blog = FactoryGirl.create(:blog)
-	# 	visit new_blog_path
-	# 	fill_in 'Post', with: blog.post
-	# 	fill_in 'Summary', with: blog.summary
-	# 	click_button 'Create'
-	# 	click_link 'Back'
-	# 	page.first(:link, "Destroy").click 		# because there may be more than one 'Edit' links
-	# 	alert = page.driver.browser.switch_to.alert
-	# 	page.driver.browser.switch_to.alert.accept
-	# 	logout(:user)
-	# end
+	it "deletes a Blog Post" do
+		login_user
+		blog = FactoryGirl.create(:blog)
+		visit new_blog_path
+		fill_in 'Post', with: blog.post
+		fill_in 'Summary', with: blog.summary
+		click_button 'Create'
+		click_link 'Back'
+		page.first(:link, "Destroy").click 		# because there may be more than one 'Edit' links
+		expect(page).to have_text("Blog was successfully deleted.")
+		logout(:user)
+	end
 end

@@ -1,0 +1,3 @@
+<% @comment_list.each do |c| %>
+<br>  <%= c.content if c.commentable_id == @blog.id%>
+<% end %>

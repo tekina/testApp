@@ -31,6 +31,13 @@ RLogin::Application.routes.draw do
     end
   end
 
+  get 'api/:id' => 'api#show'
+  get 'api' => 'api#index'
+  post 'api' => 'api#create'
+  get 'api/:id/edit' => 'api#edit'
+  put 'api/:id' => 'api#update'
+  delete 'api/:id' => 'api#destroy'  
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

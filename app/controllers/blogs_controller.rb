@@ -64,7 +64,7 @@ class BlogsController < ApplicationController
     @blog = Blog.find(params[:id])
     @blog.destroy
     respond_to do |format|
-      format.html { redirect_to blogs_url }
+      format.html { redirect_to blogs_url, notice: 'Blog was successfully deleted.' }
       format.json { head :no_content }
     end
   end

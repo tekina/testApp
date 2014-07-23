@@ -22,10 +22,11 @@
 <br>
 <p>
 <strong>Comments on this post:</strong>
+<div id = "comment">
 <br>
-<% @comment_list.each do |c| %>
-  <%= c.content if c.commentable_id == @blog.id%>  <br>  
-<% end %>
+<%= render partial: 'blogs/comment' %>
+</div>
+<br>  
 </p>
 
 <br>
@@ -33,7 +34,7 @@
 <p>
   <strong> Add a comment: </strong>
   <br>
-<%= semantic_form_for @comment do |f| %>
+<%= semantic_form_for @comment, remote: true do |f| %>
   <%= f.input :content, input_html: { class: 'autogrow', rows: 4 }%>
   <%= f.input :commentable_type, as: :hidden %>
   <%= f.hidden_field :commentable_id %>
