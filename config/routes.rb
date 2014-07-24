@@ -21,13 +21,18 @@ RLogin::Application.routes.draw do
       devise_scope :user do
         post "/sign_in", :to => 'sessions#create'
         delete "/sign_out", :to => 'sessions#destroy'
-        get 'api/:id' => 'api#show'
-        get 'api' => 'api#index'
-        post 'api' => 'api#create'
-        get 'api/:id/edit' => 'api#edit'
-        put 'api/:id' => 'api#update'
-        delete 'api/:id' => 'api#destroy'
       end
+    end
+  end
+
+  namespace :api, defaults: {format: 'json'} do
+    namespace :v1 do
+      get 'blog/:id' => 'blog#show'
+      get 'blog' => 'blog#index'
+      post 'blog' => 'blog#create'
+      get 'blog/:id/edit' => 'blog#edit'
+      put 'blog/:id' => 'blog#update'
+      delete 'blog/:id' => 'blog#destroy'
     end
   end
 

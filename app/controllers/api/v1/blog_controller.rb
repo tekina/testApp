@@ -1,6 +1,6 @@
-class Api::V1::ApiController < ApplicationController
-	# respond_to :json
-	# before_action :authenticate_user!
+class Api::V1::BlogController < ApplicationController
+  # before_action :authenticate_user!
+  skip_before_filter  :verify_authenticity_token
   # before_action :set_blog, only: [:show]
   # GET /api
   # GET /api.json
@@ -31,7 +31,7 @@ class Api::V1::ApiController < ApplicationController
   # POST /api.json
   def create
     # redirect_to action: 'index' and return  
-    if user_signed_in? 
+    # if user_signed_in? 
       @blog = Blog.new(blog_params.merge(user_id: current_user.try(:id)))
       respond_to do |format|
         if @blog.save
@@ -42,11 +42,11 @@ class Api::V1::ApiController < ApplicationController
           format.json { render json: @blog.errors, status: :unprocessable_entity }
         end
       end
-    else
-      respond_to do |format|
-        format.json { render json: 'Unable to create blog post. Are you logged in?'.to_json, status: :unprocessable_entity}
-      end
-    end
+    # else
+    #   respond_to do |format|
+    #     format.json { render json: 'Unable to create blog post. Are you logged in?'.to_json, status: :unprocessable_entity}
+    #   end
+    # end
   end
 
   # PATCH/PUT /api/1
