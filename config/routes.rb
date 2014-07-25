@@ -27,12 +27,13 @@ RLogin::Application.routes.draw do
 
   namespace :api, defaults: {format: 'json'} do
     namespace :v1 do
-      get 'blog/:id' => 'blog#show'
-      get 'blog' => 'blog#index'
-      post 'blog' => 'blog#create'
-      get 'blog/:id/edit' => 'blog#edit'
-      put 'blog/:id' => 'blog#update'
-      delete 'blog/:id' => 'blog#destroy'
+      resources :blogs
+      get 'blogs/:id' => 'blog#show'
+      get 'blogs' => 'blog#index'
+      post 'blogs' => 'blog#create'
+      get 'blogs/:id/edit' => 'blog#edit'
+      put 'blogs/:id' => 'blog#update'
+      delete 'blogs/:id' => 'blog#destroy'
     end
   end
 
