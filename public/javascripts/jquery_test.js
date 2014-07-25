@@ -14,7 +14,7 @@ $(document).ready(function(){
 
 	$("#b2").click(function(){
 		var postVal = $('textarea#post').val();
-		var summaryVal = $('textarea#summary').val();
+		var summaryVal = $('#summary').val();
 		$.post( "/api/v1/blogs", { blog: {post: postVal, summary: summaryVal} }, 
 			function(data, status){
 				if(status=="success"){
@@ -22,20 +22,4 @@ $(document).ready(function(){
 				}
 		});
 	});
-
-	function test() {
-		window.alert("test");
-	}
-
-	function myFunction() {
-    document.getElementById("p2").innerHTML = "Hello World";
-	}
-
-	var myLink = document.getElementById("t1");
-
-	myLink.onclick = function(){
-		test();
-    return false;
-	}
-
 });

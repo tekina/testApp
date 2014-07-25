@@ -3,39 +3,45 @@
 	<head>
 		<title>JQuery Test</title>
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<link rel="stylesheet" href="//code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
+		<script src="//code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+  	<link rel="stylesheet" href="/resources/demos/style.css">
 		<script src = "javascripts/jquery_test.js" async></script>
+		<script>
+  		$(function() {
+    	$( "#tabs" ).tabs();
+  		});
+  	</script>
 	</head>
 
 	<body>
-		<div id = "div1">
-			<p id = "p1"></p>
-			<button id = "b1"> Get 1st Blog</button>
+
+		<div id="tabs">
+
+		  <ul>
+		    <li><a href="#tabs-1">Get 1st blog post</a></li>
+		    <li><a href="#tabs-2">Create a new blog post</a></li>
+		  </ul>
+
+		  <div id="tabs-1">
+				<p id = "p1"></p>
+				<button id = "b1"> Get 1st Blog</button>
+		  </div>
+
+		  <div id="tabs-2">
+		  	<form id = "blogform">
+					Blog Post:<br> 
+					<textarea id = "post" form = "blogform"></textarea> <br>
+					Blog Summary:<br> 
+					<input type = "text" id = "summary"/> <br>
+					<input type = "button" id = "b2" value ="Submit" /> 
+				</form>	
+				<p id = "p2"></p>
+		  </div>
+
 		</div>
 
-		<div id = "div2">
-			<!-- <form> -->
-
-		<!-- <form id="newblog">
-			Blog Post: 
-			<input type="textarea" id="post"> <br>
-			Blog Summary: 
-			<input type="textarea" id="summary"> <br>
-			<input type="submit" value="Submit" id = "b2">
-			</form>
- -->
-			Blog Post: 
-			<textarea id="post"> </textarea> <br>
-			Blog Summary: 
-			<textarea id="summary"> </textarea> <br>
-		</div>
-		<button id = "b2"> Submit</button>	
-		<p id = "p2"></p>
-
-<!-- 		<form>
-			<input type="submit" id="t1" value="test">
-		</form> -->	
-
-		
 	</body>
+
 </html>
 
