@@ -102,4 +102,6 @@ gem 'haml'
 gem 'html2haml'
 gem 'haml-rails'
 
+gem 'stasis'
+
 ruby "2.0.0"
