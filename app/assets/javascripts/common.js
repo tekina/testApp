@@ -1,9 +1,10 @@
-function pushEvent(category, action, label) {
-	_gaq.push(['_trackEvent', category, action, label]);
-}
-
 function blogIndexClick(category, label) {
 	pushEvent(category, 'Click', label);
+}
+
+function pushEvent(category, action, label) {
+	alert(category);
+	_gaq.push(['_trackEvent', category, action, label]);
 }
 
 function userLogin() {
