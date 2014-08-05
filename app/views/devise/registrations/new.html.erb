@@ -12,7 +12,7 @@
   <div><%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "off" %></div>
 
-  <div><%= f.submit "Sign up" %></div>
+  <div><%= f.submit "Sign up", onclick: "_gaq.push(['_trackEvent', 'Sign up', 'Submit', 'New User']);"  %></div>
 <% end %>
 
 <%= render "devise/shared/links" %>
