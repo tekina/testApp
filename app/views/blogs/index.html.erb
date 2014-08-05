@@ -18,12 +18,12 @@
         <td><%= User.find(blog.user_id).email %></td>
         <td><%= blog.post %></td>
         <td><%= blog.summary %></td>
-        <td><%= link_to 'Show', blog, onclick: "blogIndexClick('showBlog', " + (blog.id).to_s + ");" %></td>
+        <td><%= link_to 'Show', blog, onclick: "blogIndexClick('BlogIndex', 'show');" %></td>
         <td><% if can? :update, Blog %>
-          <%= link_to 'Edit', edit_blog_path(blog), onclick: "blogIndexClick('editBlog', " + (blog.id).to_s + ");" %>
+          <%= link_to 'Edit', edit_blog_path(blog), onclick: "blogIndexClick('BlogIndex', 'edit');" %>
         <% end %></td>
         <td><% if can? :destroy, Blog %>
-          <%= link_to 'Destroy', blog, method: :delete, onclick: "blogIndexClick('deleteBlog', " + (blog.id).to_s + ");" %>
+          <%= link_to 'Destroy', blog, method: :delete, onclick: "blogIndexClick('BlogIndex', 'delete');" %>
         <% end %></td>
       </tr>
     <% end %>
