@@ -13,6 +13,10 @@ RLogin::Application.routes.draw do
   # You can have the root of your site routed with "root"
  
   root 'blogs#index'
+  
+  namespace :smses do
+    get 'sms_quickstart'
+  end
  
   devise_for :users, skip: [:sessions] #, :passwords, :registrations]
   # routes for api_controller

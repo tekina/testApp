@@ -102,4 +102,7 @@ gem 'haml'
 gem 'html2haml'
 gem 'haml-rails'
 
+# for twilio sms
+gem 'twilio-ruby'
+
 ruby "2.0.0"
